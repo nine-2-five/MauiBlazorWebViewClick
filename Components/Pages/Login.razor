@@ -1,0 +1,42 @@
+﻿@page "/login"
+
+<h1>Login</h1>
+
+<EditForm Model="@loginModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <InputText id="username" class="form-control" @bind-Value="@loginModel.Username" />
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <InputText id="password" class="form-control" @bind-Value="@loginModel.Password" type="password" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" @onclick="HandleButtonClick">Log In</button>
+</EditForm>
+
+@code {
+    public class LoginModel
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+
+    private LoginModel loginModel = new LoginModel();
+
+    private void HandleButtonClick()
+    {
+        // Additional logic to execute when the submit button is clicked
+        Console.WriteLine("Submit button clicked");
+    }
+
+    private void HandleValidSubmit()
+    {
+        // Implement your login logic here
+        Console.WriteLine($"Login Attempt: Username: {loginModel.Username}, Password: {loginModel.Password}");
+    }
+}
